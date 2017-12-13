@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const SRC_DIR = path.resolve(__dirname, 'src');
 const DIST_DIR = path.resolve(__dirname, 'dist');
@@ -26,11 +27,13 @@ module.exports = {
 			{
 				test: /\.scss$/,
 				include: SRC_DIR,
-				use: [
-					{ loader: 'style-loader' },
-					{ loader: 'css-loader', options: { sourceMap: true } },
-					{ loader: 'sass-loader', options: { sourceMap: true } },
-				],
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
+						{ loader: 'css-loader', options: { sourceMap: true } },
+						{ loader: 'sass-loader', options: { sourceMap: true } },
+					],
+				}),
 			},
 			{
 				test: /\.(jpe?g|png)$/i,
@@ -63,10 +66,20 @@ module.exports = {
 			inject: true,
 			hash: true,
 		}),
+		new ExtractTextPlugin({
+			filename: 'css/styles.min.css',
+			allChunks: true,
+			disable: false,
+		}),
+		new webpack.optimize.UglifyJsPlugin({
+			sourceMap: true,
+			minimize: true,
+			comments: false,
+		}),
 		new webpack.LoaderOptionsPlugin({ minimize: true }),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.DefinePlugin({
-			'process.env.NODE_ENV': JSON.stringify('development'),
+			'process.env.NODE_ENV': JSON.stringify('production'),
 		}),
 	],
 	devtool: 'eval-source-map',

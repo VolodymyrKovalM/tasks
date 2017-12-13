@@ -1,3 +1,9 @@
+/*
+	Print content for some element on the page.
+	Use these properties “parentNode, children/childNodes, firstChild, lastChild,
+	previousSibling, nextSibling” to find an element
+*/
+
 const container = document.getElementById('container');
 
 const firstList = container.firstElementChild;
