@@ -9,8 +9,7 @@
 
 console.log('**********Task 4**********');
 
-(function() {
-
+(function mix() {
 	const mixin = {
 		list() {
 			const { props } = this;
@@ -43,5 +42,4 @@ console.log('**********Task 4**********');
 
 	obj1.list();
 	obj2.list();
-
 }());

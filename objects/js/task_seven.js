@@ -4,7 +4,7 @@
 
 console.log('**********Task 7**********');
 
-(function() {
+(function m() {
 	const mixin = {
 		list() {
 			const { props } = this;

@@ -10,7 +10,7 @@ const box = document.getElementById('box');
 box.style.top = '300px';
 box.style.left = '300px';
 
-box.addEventListener('mouseover', function() {
+box.addEventListener('mouseover', function runFromCursor() {
 	const maxNextX = window.innerWidth - this.offsetWidth;
 	const maxNextY = window.innerHeight - this.offsetHeight;
 

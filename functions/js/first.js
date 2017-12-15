@@ -1,3 +1,8 @@
+/*
+	- Create a function that will take any number of arguments and return their sum.
+	- Make this function be able to take array as argument.
+*/
+
 function argsSum(...args) {
 	let sum = 0;
 
